@@ -1,0 +1,40 @@
+{
+    "name": "sina-shunku",
+    "version": "1.0.0",
+    "description": "Administracion de sina-shunku",
+    "main": "src/main.js",
+    "homepage": "https://github.com/juanchos2018",
+    "repository": "https://github.com/juanchos2018",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve --open",
+        "build": "vue-cli-service build",
+        "dev": "npm run serve"
+    },
+    "dependencies": {
+        "ant-design-vue": "1.7.6",
+        "axios": "^0.21.3",
+        "bootstrap": "^5.1.0",
+        "bootstrap-vue": "^2.21.2",
+        "chart.js": "3.4.1",
+        "core-js": "3.15.2",
+        "vue": "^2.6.14",
+        "vue-easy-lightbox": "^0.16.1",
+        "vue-github-buttons": "^3.1.0",
+        "vue-router": "3.5.2",
+        "vue-session": "^1.0.0",
+        "vue-sweetalert2": "^5.0.2",
+        "vue-youtube": "^1.4.0",
+        "vue-youtube-playlist": "^1.0.2",
+        "vuex": "^3.6.2"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "4.5.13",
+        "@vue/cli-plugin-router": "4.5.13",
+        "@vue/cli-service": "4.5.13",
+        "node-sass": "6.0.1",
+        "sass-loader": "^10",
+        "vue-template-compiler": "2.6.14"
+    }
+}

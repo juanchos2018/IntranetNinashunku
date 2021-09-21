@@ -1,0 +1,12 @@
+.root {
+    position: static;
+}
+
+// A map of breakpoints.
+$breakpoints-up: ( xs: 0, sm: 600px, md: 960px, lg: 1280px, xl: 1920px);
+.video-popup {
+    max-width: none;
+     ::v-deep iframe {
+        width: 100%
+    }
+}
