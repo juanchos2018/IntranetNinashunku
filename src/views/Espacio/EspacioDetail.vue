@@ -41,6 +41,12 @@
 
         </a-col>
 
+      <!-- <a-col :span="24" :md="2">
+          <a-form-item label="img">
+               <b-form-file @change="onFileChange2" v-model="photo" placeholder="Seleccione un foto..." drop-placeholder="Suelta la imagen aquí..."></b-form-file>
+
+          </a-form-item>
+        </a-col> -->
         <a-col :span="24" :md="6">
           <a-form-item label="Nombre Espacio">
             <a-input placeholder="Nombres" v-model="modelEspacio.nombre_espacio">
@@ -188,6 +194,7 @@ export default {
   data() {
     return {
       isLoading: false,
+
       fileList: [],
       itemUsuario: [],
       previewVisible: false,
@@ -265,7 +272,7 @@ export default {
             })
               .then(function(response) {   
                 me.isLoading=false;
-              //  console.log(response);    
+                console.log(response);    
                 if (response.data.status == "200") {
                   me.MensajeOk("Registrado con Exito !");
                   me.InfoEspacio();
@@ -279,10 +286,45 @@ export default {
               })
               .catch((error) => {
                   console.log("errror  :");
-                console.log(error);
+                  console.log(error);
                   me.isLoading=false;
               });
-         },
+     },
+     onFileChange2(e) {
+  // e.preventDefault();
+        let me = this;
+         me.modelEspacio.photo= e.target.files[0];
+     
+       let url= me.url_base+'Control/espacioList.php';          
+        let data = new FormData();
+         data.append("tipo", "edit");
+         data.append('id_espacio', me.modelEspacio.id_espacio);   
+         data.append("photo", me.modelEspacio.photo);;
+     
+        me.isLoading = true;
+        axios({
+          method: "POST",
+          url: url,
+          data: data,
+          headers: { "Content-Type": "application/json"},
+        })
+          .then(function (response) {
+             if (response.data.status == "200") {
+                  me.MensajeOk("Registrado con Exito !");
+            } else {
+              Swal.fire({ icon: 'error', text: 'A ocurrido un error', timer: 3000,})
+            }
+            me.isLoading = false;
+          })
+          .catch((error) => {
+            Swal.fire({ icon: 'error', text: 'A ocurrido un error', timer: 3000,})
+            me.isLoading = false;
+         });
+     },
+     AddProduct() { 
+      
+    },
+
     InfoEspacio(){
       let me = this;      
       //let url = "espacioInfo/" + id_espacio;
@@ -313,6 +355,7 @@ export default {
       this.previewVisible = true;
     },
     
+   
     onFileChange(e) {
     //  this.modelEquipo.photo = e.target.files[0];
              var     foto=new Image();

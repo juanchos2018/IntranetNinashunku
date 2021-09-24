@@ -3,7 +3,7 @@
     <h5> Equipo Tecnico</h5>
 
     <a-button type="primary" v-if="esAdministrador" @click="addEquipo">
-      AGREGAR Equipo
+      AGREGAR EQUIPO
     </a-button>
     <br /><br />   
 
@@ -122,6 +122,9 @@ export default {
         width: 0,
         height: 0,
         size: "mediun",
+      },
+      modelEquipo:{
+        id_equipo:0
       },
       errors: {
         nombre_foto: false,
@@ -345,10 +348,10 @@ export default {
     },  
     Eliminar(id){
       let me = this;
-      me.modelFotoOrga.id_fotoeventoespacio=id;
-      const data = me.modelFotoOrga;    
-      console.log(data); 
-      let url =me.url_base+ "Control/eventoesfotospacioList.php";    
+      me.modelEquipo.id_equipo=id;
+      const data = me.modelEquipo;    
+   //   console.log(data); 
+      let url =me.url_base+ "Control/Equipo.php";    
       axios({
         method: "DELETE",
         url: url,
@@ -357,8 +360,9 @@ export default {
         .then(function(response) {
           //  console.log(response);          
           if (response.data.status == "200") {    
-             me.modalVisible = false;    
-             me.MensajeOk("Eliminado con Exito !")            
+            // me.modalVisible = false;    
+             me.MensajeOk("Eliminado con Exito !")    
+             me.listEquipos();        
            //  me.ListEspacioPhotoEventos(me.modelFotoOrga.id_espacio,me.modelFotoOrga.id_eventoespacio);
     
             // me.modelVideoOrga.nombre_video="";
@@ -386,7 +390,7 @@ export default {
       confirmButtonText: 'Si, Eliminar!'
        }).then((result) => {
       if (result.isConfirmed) {
-         // me.Eliminar(id);
+          me.Eliminar(id);
       }
       })
     }

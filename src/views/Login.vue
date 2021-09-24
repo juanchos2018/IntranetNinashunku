@@ -47,7 +47,8 @@
       </a-col>
 
       <a-col :span="24" :md="10" :lg="10" :xl="10">
-        <img src="images/logoempresa.png" width="310" height="430" alt="" />
+        <img src="images/redjuvenil.png" width="310" height="430" alt="" />
+             <!-- <img src="images/redjuvenil.png" width="270" height="300" alt="" /> -->
       </a-col>
       <!-- Sign In Image Column -->
     </a-row>

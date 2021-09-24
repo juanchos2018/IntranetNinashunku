@@ -7,8 +7,8 @@
     
 
           <center>
-            <h1>{{ modelOrga.nombre }}</h1>
-            <img src="images/logoempresa.png" width="110" height="230" alt="" />
+         
+            <img src="images/redjuvenil.png" width="270" height="300" alt="" />
           </center>
       
         <!-- <a-button type="primary" @click="AddOganizacion">
