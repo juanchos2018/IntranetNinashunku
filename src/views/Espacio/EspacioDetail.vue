@@ -153,8 +153,25 @@
                 />
           </a-form-item>
         </a-col>
-          </a-row>
-            <a-col :span="24" :md="3">
+
+
+      
+
+        
+    </a-row>
+    <a-row :gutter="24">
+
+        <a-col :span="24" :md="12">
+          <a-form-item label="Color">
+              <div style="">             
+            <v-input-colorpicker  v-model="modelEspacio.color" />
+            <!-- <a-input  v-model="modelEspacio.color" disabled>
+            </a-input> -->
+             </div> 
+          </a-form-item>
+        </a-col>
+    </a-row>
+       <a-col :span="24" :md="3">
           <a-form-item label="Registrar">
             <a-button type="primary" html-type="submit" >
               GUARDAR ESPACIO
@@ -213,6 +230,7 @@ export default {
         destaca: "",
         mision:'',
         vision:'',
+        color:'',
         objetivo:'',
         historia:'',
         estado: 1,       
@@ -292,10 +310,9 @@ export default {
      },
      onFileChange2(e) {
   // e.preventDefault();
-        let me = this;
-         me.modelEspacio.photo= e.target.files[0];
-     
-       let url= me.url_base+'Control/espacioList.php';          
+         let me = this;
+         me.modelEspacio.photo= e.target.files[0];     
+        let url= me.url_base+'Control/espacioList.php';          
         let data = new FormData();
          data.append("tipo", "edit");
          data.append('id_espacio', me.modelEspacio.id_espacio);   

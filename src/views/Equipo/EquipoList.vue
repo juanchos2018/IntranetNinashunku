@@ -16,7 +16,8 @@
         :key="item.id_equipo"
       >
         <a-card hoverable style="width: 240px">
-          <img slot="cover" alt="example" :src="url_base + item.photo" />
+          <img slot="cover" alt="example" :src="url_base + item.photo"   width="100"
+          height="220"/>
           <a-card-meta :title="item.nombre">            
           </a-card-meta>
           <template slot="actions" class="ant-card-actions">
@@ -55,7 +56,6 @@
             </div>
           </a-upload>
         </a-form-item>
-
         <a-form-item>
           <a-button type="primary" html-type="submit">
             {{NombreBoton}}  
@@ -63,13 +63,11 @@
         </a-form-item>       
       </a-form>
     </a-modal>
-
     <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
       <img alt="example" style="width: 100%" :src="previewImage" />
 
     </a-modal>
-    
-       <vue-easy-lightbox
+     <vue-easy-lightbox
       escDisabled
       moveDisabled
       :visible="visible"
@@ -200,7 +198,7 @@ export default {
       })
         .then(function(response) {
           me.itemequiopos = response.data;
-        console.log(response);
+         //  console.log(response);
         })
         .catch((error) => {
           console.log(error);

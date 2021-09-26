@@ -5,7 +5,7 @@ Vue.use(Vuex)
 const state = {
     sidebarShow: 'responsive',
     sidebarMinimize: true,
-  //  url_base: 'http://localhost/apiphp/',
+    //  url_base: 'http://localhost/apiphp/',
     tipousuario: '',
     id_usuario: '',
     url_base: 'https://phpapi.identidadesjuveniles.org/',

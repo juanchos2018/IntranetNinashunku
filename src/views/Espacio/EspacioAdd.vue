@@ -97,9 +97,16 @@
 
         <a-col :span="24" :md="3">
           <a-form-item label="Registrar">
-            <a-button type="primary" html-type="submit" >
+              <div style="">
+               
+
+            <v-input-colorpicker  v-model="modelEspacio.color" />
+            <a-input  v-model="modelEspacio.color" disabled>
+            </a-input>
+             </div> 
+            <!-- <a-button type="primary" html-type="submit" >
               REGISTRAR ESPACIO
-            </a-button>
+            </a-button> -->
           </a-form-item>      
         </a-col>
       </a-row>
@@ -129,6 +136,8 @@ export default {
   components: {},
   data() {
     return {
+       color: "#0f4c81",
+
       fileList: [],
       itemUsuario: [],
       previewVisible: false,
@@ -143,6 +152,7 @@ export default {
         direcion: "",
         telefono: "",
         destaca: "",
+        color:'#2196f3',
         estado: 1,       
         photo: "",
         id_organizacion: 1,
@@ -257,6 +267,7 @@ export default {
       data.append("telefono", me.modelEspacio.telefono);
       data.append("photo", me.modelEspacio.photo);
       data.append("estado", me.modelEspacio.estado);
+      data.append("color", me.modelEspacio.color);
       data.append("id_organizacion", me.modelEspacio.id_organizacion);
       data.append("id_usuario", me.modelEspacio.id_usuario);
      // data.append("logueo", me.modelUsuario.logueo);      

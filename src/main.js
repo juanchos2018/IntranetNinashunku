@@ -6,6 +6,8 @@ import DefaultLayout from './layouts/Default.vue'
 import DashboardLayout from './layouts/Dashboard.vue'
 import DashboardRTLLayout from './layouts/DashboardRTL.vue'
 import router from './router'
+import InputColorPicker from "vue-native-color-picker";
+
 // import './plugins/click-away'
 import VueSession from 'vue-session'
 import './scss/app.scss';
@@ -27,8 +29,11 @@ Vue.component("layout-default", DefaultLayout);
 Vue.component("layout-dashboard", DashboardLayout);
 Vue.component("layout-dashboard-rtl", DashboardRTLLayout);
 import { BFormFile } from 'bootstrap-vue'
-Vue.component('b-form-file', BFormFile)
 
+
+
+Vue.use(InputColorPicker)
+Vue.component('b-form-file', BFormFile)
 new Vue({
     router,
     store,
