@@ -56,7 +56,7 @@
           </a-form-item>
         </a-col>
 
-        <a-col :span="12" :md="3">
+        <!-- <a-col :span="12" :md="3">
           <a-form-item label="Estado">
             <a-switch v-model="estaodousuario">
               <a-icon slot="checkedChildren" type="check" />
@@ -64,6 +64,7 @@
             </a-switch>            
           </a-form-item>
         </a-col>
+         -->
         <!-- <a-col :span="24" :md="6">
         <a-form-item label="img">
           <b-form-file
@@ -74,7 +75,23 @@
           ></b-form-file>
         </a-form-item>
       </a-col> -->
-     
+        <a-col :span="24" :md="6">
+          <a-form-item label="Facebook">
+            <a-input placeholder="facebook" v-model="modelEspacio.linkfacebook">
+            </a-input>
+          </a-form-item>
+        </a-col>
+       <a-col :span="24" :md="3">
+          <a-form-item label="Colores">
+            <div style="">             
+            <v-input-colorpicker  v-model="modelEspacio.color" />
+             <v-input-colorpicker  style="margin-left:5px" v-model="modelEspacio.color2" />
+            <!-- <a-input  v-model="modelEspacio.color" disabled>
+            </a-input> -->
+             </div> 
+      
+          </a-form-item>      
+        </a-col>
         <a-col :span="12" :md="3">
           <a-form-item label="Logo">
             <a-upload
@@ -95,21 +112,11 @@
           </a-form-item>
         </a-col>
 
-        <a-col :span="24" :md="3">
-          <a-form-item label="Registrar">
-              <div style="">
-               
-
-            <v-input-colorpicker  v-model="modelEspacio.color" />
-            <a-input  v-model="modelEspacio.color" disabled>
-            </a-input>
-             </div> 
-            <!-- <a-button type="primary" html-type="submit" >
+        <a-button type="primary" html-type="submit" >
               REGISTRAR ESPACIO
-            </a-button> -->
-          </a-form-item>      
-        </a-col>
+            </a-button>
       </a-row>
+          
     </a-form>
 	</a-card>
     <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
@@ -152,7 +159,9 @@ export default {
         direcion: "",
         telefono: "",
         destaca: "",
-        color:'#2196f3',
+        color:'#0d47a1',
+        color2:'#2196f3',
+        linkfacebook:'',
         estado: 1,       
         photo: "",
         id_organizacion: 1,
@@ -258,7 +267,8 @@ export default {
       // this.uploading = true;
      //  let url = "espacioAdd"; 
       let url =me.url_base+ "Control/espacioList.php"; 
-      me.modelEspacio.estado = me.estaodousuario == true ? 1 : 0;
+   //   me.modelEspacio.estado = me.estaodousuario == true ? 1 : 0;
+      me.modelEspacio.estado=1;
       data.append("tipo", "add");
       data.append("nombre_espacio", me.modelEspacio.nombre_espacio);
       data.append("fecha_creacion", me.modelEspacio.fecha_creacion);
@@ -268,6 +278,8 @@ export default {
       data.append("photo", me.modelEspacio.photo);
       data.append("estado", me.modelEspacio.estado);
       data.append("color", me.modelEspacio.color);
+      data.append("color2", me.modelEspacio.color2);
+      data.append("linkfacebook", me.modelEspacio.linkfacebook);
       data.append("id_organizacion", me.modelEspacio.id_organizacion);
       data.append("id_usuario", me.modelEspacio.id_usuario);
      // data.append("logueo", me.modelUsuario.logueo);      

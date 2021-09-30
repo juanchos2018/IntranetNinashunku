@@ -152,22 +152,26 @@
                 :auto-size="{ minRows: 3, maxRows: 5 }"
                 />
           </a-form-item>
-        </a-col>
-
-
-      
+        </a-col>      
 
         
     </a-row>
     <a-row :gutter="24">
 
         <a-col :span="24" :md="12">
-          <a-form-item label="Color">
+          <a-form-item label="Colores">
               <div style="">             
             <v-input-colorpicker  v-model="modelEspacio.color" />
+            <v-input-colorpicker style="margin-left:5px" v-model="modelEspacio.color2" />
             <!-- <a-input  v-model="modelEspacio.color" disabled>
             </a-input> -->
              </div> 
+          </a-form-item>
+        </a-col>
+         <a-col :span="24" :md="12">
+          <a-form-item label="Facebook">
+            <a-input placeholder="facebook" v-model="modelEspacio.linkfacebook">
+            </a-input>
           </a-form-item>
         </a-col>
     </a-row>
@@ -231,6 +235,8 @@ export default {
         mision:'',
         vision:'',
         color:'',
+          color2:'',
+            linkfacebook:'',
         objetivo:'',
         historia:'',
         estado: 1,       
