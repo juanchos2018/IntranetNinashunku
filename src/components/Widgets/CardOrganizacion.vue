@@ -53,11 +53,11 @@ export default {
   },
  methods:{
      fotosOrganizacion(id_organizacion){
-         console.log(id_organizacion)
+       //  console.log(id_organizacion)
           this.$router.push({ name: "FotosOrganizacion" });
     },
     videosOrganizacion(id_organizacion){
-         console.log(id_organizacion)
+        /// console.log(id_organizacion)
           this.$router.push({ name: "VideosOrganizacion" });
     }
  }

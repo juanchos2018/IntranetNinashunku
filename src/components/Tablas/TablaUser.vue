@@ -20,6 +20,9 @@
 				<a-button type="primary" :data-id="data.id_usuario" @click="Editar(data.id_usuario)">
 					Editar
 				</a-button>
+					<a-button type="primary" :data-id="data.id_usuario" @click="Eliminar(data.id_usuario)">
+					Eliminar
+				</a-button>
 			</template>
 
 		</a-table>
@@ -29,6 +32,8 @@
 </template>
 
 <script>
+
+import { mapState } from 'vuex'
 	export default ({
 		props: {
 			data: {
@@ -46,10 +51,19 @@
 				authorsHeaderBtns: 'all',
 			}
 		},
+		 computed: {
+  		  ...mapState(['url_base'])		
+		},
 		methods:{
 			Editar(id){
 				//console.log(id)
+			   this.$router.push({ name: "UsuarioEdit" ,params:{ id_usuario:id}});
+
+			},
+			Eliminar(id){
+				this.$emit('Eliminar',id);
 			}
+			
 		}
 	})
 

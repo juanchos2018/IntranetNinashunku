@@ -60,12 +60,22 @@ let routes = [{
         component: () =>
             import ('../views/Usuario/UsuarioList.vue'),
     },
+
+
     {
         path: '/usuariosadd',
         name: 'UsuariosAdd',
         layout: "dashboard",
         component: () =>
             import ('../views/Usuario/UsuarioAdd.vue'),
+    },
+    {
+        path: '/usuarioedit/:id_usuario',
+        name: 'UsuarioEdit',
+        layout: "dashboard",
+        props: true,
+        component: () =>
+            import ('../views/Usuario/UsuarioEdit.vue'),
     },
     {
         path: '/organizacion',
@@ -81,7 +91,6 @@ let routes = [{
         component: () =>
             import ('../views/Artes/ArtesList.vue'),
     },
-
     {
         path: '/artesadd',
         name: 'ArtesAdd',
@@ -89,9 +98,6 @@ let routes = [{
         component: () =>
             import ('../views/Artes/ArtesAdd.vue'),
     },
-
-
-
     {
         path: '/organizacionadd',
         name: 'OrganizacionAdd',
@@ -108,9 +114,6 @@ let routes = [{
         component: () =>
             import ('../views/Organizacion/OrganizacionDetail.vue'),
     },
-
-
-
     {
         path: '/misOrganizaciones',
         name: 'MisOrganizaciones',
@@ -118,7 +121,6 @@ let routes = [{
         component: () =>
             import ('../views/MisOrganizaciones/MisOrganizaciones.vue'),
     },
-
     {
         path: '/fotosOrganizacion/:id_orgaevento',
         name: 'FotosOrganizacion',
@@ -127,7 +129,6 @@ let routes = [{
         component: () =>
             import ('../views/MisOrganizaciones/FotosOrganizacion.vue'),
     },
-
     {
         path: '/videoorganevento/:id_orgaevento',
         name: 'VideoOrganEvento',
@@ -136,7 +137,6 @@ let routes = [{
         component: () =>
             import ('../views/MisOrganizaciones/VideosOrganizacion.vue'),
     },
-
     {
         path: '/equipotecnicolis',
         name: 'EquipoTecnicoList',
@@ -153,13 +153,6 @@ let routes = [{
         component: () =>
             import ('../views/Equipo/EquipoAdd.vue'),
     },
-
-
-
-
-
-
-
     {
         path: '/espaciolist',
         name: 'EspacioList',
@@ -199,7 +192,6 @@ let routes = [{
         component: () =>
             import ('../views/Espacio/EspacioVideoEventos.vue'),
     },
-
     {
         path: "/eventosnoticaespacio/:datos",
         name: 'EspacioNoticiasList',
