@@ -268,6 +268,7 @@ export default {
       data.append("apellido", me.modelUsuario.apellido);
       data.append("documento", me.modelUsuario.documento);
       data.append("correo", me.modelUsuario.correo);
+       data.append("descrip_foto","edit");
       data.append("photo", me.modelUsuario.photo);
       data.append("clave", me.modelUsuario.clave);
       data.append("estado", me.modelUsuario.estado);

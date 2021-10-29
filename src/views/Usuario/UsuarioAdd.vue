@@ -17,8 +17,8 @@
           </a-form-item>
         </a-col>
         <a-col :span="24" :md="6">
-          <a-form-item label="Documento">
-            <a-input placeholder="Documento" v-model="modelUsuario.documento">
+          <a-form-item label="Cedula">
+            <a-input placeholder="Cedula" v-model="modelUsuario.documento">
             </a-input>
           </a-form-item>
         </a-col>
@@ -151,6 +151,7 @@ export default {
         estado: 1,
         logueo: 1,
         photo: "",
+        descrip_foto:'',
         id_tipousuario: 0,
       },
       errors: {
@@ -240,9 +241,10 @@ export default {
     AddUser() {
       const data = new FormData();
       let me = this;
-             me.isLoading=true;
+      me.isLoading=true;
       // this.uploading = true;
      // let url = "usuarioAdd";
+      me.modelUsuario.descrip_foto="add"; 
        let url = me.url_base+ "Control/usuarioList.php";
       me.modelUsuario.estado = me.estaodousuario == true ? 1 : 0;
       // me.modelEquipo.perteneciente =
@@ -252,6 +254,7 @@ export default {
       data.append("documento", me.modelUsuario.documento);
       data.append("correo", me.modelUsuario.correo);
       data.append("photo", me.modelUsuario.photo);
+      data.append("descrip_foto","add");
       data.append("clave", me.modelUsuario.clave);
       data.append("estado", me.modelUsuario.estado);
       data.append("logueo", me.modelUsuario.logueo);
@@ -295,12 +298,12 @@ export default {
         .then(function(response) {
           items = response.data;
           items.map(function(x) {
-            if (x.id_tipousuario!=1) {
+            // if (x.id_tipousuario!=1) {
                  me.itemUsuario.push({
-                text: x.nombre,
-                value: x.id_tipousuario,
-            });
-            }
+                    text: x.nombre,
+                    value: x.id_tipousuario,
+               });
+          //  }
            
           });
         })
