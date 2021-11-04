@@ -66,7 +66,20 @@
             </a-input>
           </a-form-item>
         </a-col> 
-
+  <a-col :span="24" :md="6">
+          <a-form-item label="Usuario Responsable">
+            <a-select
+              
+              style="width: 100%"
+              @change="handleProvinceChange"
+              v-model="modelEspacio.id_usuario"
+            >
+              <a-select-option v-for="item in itemUsuario" :key="item.value">
+                {{ item.text }}
+              </a-select-option>
+            </a-select>
+          </a-form-item>
+        </a-col>
     
 
 
@@ -218,6 +231,7 @@ export default {
 
       fileList: [],
       itemUsuario: [],
+      
       previewVisible: false,
       estaodousuario: true,
       validate: false,
@@ -235,14 +249,16 @@ export default {
         mision:'',
         vision:'',
         color:'',
-          color2:'',
-            linkfacebook:'',
+        color2:'',
+        linkfacebook:'',
         objetivo:'',
         historia:'',
         estado: 1,       
         photo: "",
+
         id_organizacion: 1,
         id_usuario:0,
+        id_usuarioespacio:0,
       },
       errors: {
         nombre_espacio: false,
@@ -272,7 +288,7 @@ export default {
        ...mapState(['url_base'])
   },
   mounted() {
-   /// this.getUsers();
+    this.getUsers();
     this.InfoEspacio();
   },
   methods: {
@@ -466,12 +482,13 @@ export default {
         .then(function(response) {
           items = response.data;
           items.map(function(x) {
-            if (x.id_tipousuario!=1) {
+         //   if (x.id_tipousuario!=1) {
                 me.itemUsuario.push({
                 text: x.nombre+"-"+x.apellido,
                 value: x.id_usuario,
             });
-            }
+
+        //  }
             
           });
         })

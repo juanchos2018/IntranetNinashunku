@@ -17,7 +17,6 @@
 			}
 		},
 		created() {
-			   const currentPath = this.$router.history.current.path;
 		 		if (!this.$session.exists()) {
 			     	this.$router.push('/login').catch(err => {
 						if (

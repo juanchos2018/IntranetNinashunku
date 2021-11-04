@@ -314,12 +314,12 @@ export default {
         .then(function(response) {
           items = response.data;
           items.map(function(x) {
-            if (x.id_tipousuario!=1) {
+         //   if (x.id_tipousuario!=1) {
                  me.itemUsuario.push({
                 text: x.nombre,
                 value: x.id_tipousuario,
-            });
-            }
+           });
+          //  }
            
           });
         })
