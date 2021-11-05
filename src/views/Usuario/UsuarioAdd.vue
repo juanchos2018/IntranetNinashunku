@@ -252,7 +252,7 @@ export default {
       data.append("nombre", me.modelUsuario.nombre);
       data.append("apellido", me.modelUsuario.apellido);
       data.append("documento", me.modelUsuario.documento);
-      data.append("correo", me.modelUsuario.correo);
+      data.append("correo", me.modelUsuario.correo.trim());
       data.append("photo", me.modelUsuario.photo);
       data.append("descrip_foto","add");
       data.append("clave", me.modelUsuario.clave);

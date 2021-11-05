@@ -138,11 +138,11 @@ export default {
 						this.modelVideoOrga.descrip_video="des";
 						this.modelVideoOrga.urlvideo="";
 			},
-			Delete(id){
+			Delete(id,nombre){
 				let me =this;
 				Swal.fire({
 				title: 'Desea Eliminar?',
-				text: "Ya no podra revertir!",
+				text: "Va a Eliminar a " +nombre,
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',

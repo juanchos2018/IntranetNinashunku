@@ -20,7 +20,7 @@
 				<a-button type="primary" :data-id="data.id_usuario" @click="Editar(data.id_usuario)">
 					Editar
 				</a-button>
-					<a-button type="primary" :data-id="data.id_usuario" @click="Eliminar(data.id_usuario)">
+					<a-button type="primary" :data-id="data.id_usuario" @click="Eliminar(data.id_usuario,data.nombre)">
 					Eliminar
 				</a-button>
 			</template>
@@ -60,8 +60,8 @@ import { mapState } from 'vuex'
 			   this.$router.push({ name: "UsuarioEdit" ,params:{ id_usuario:id}});
 
 			},
-			Eliminar(id){
-				this.$emit('Eliminar',id);
+			Eliminar(id,nombre){
+				this.$emit('Eliminar',id,nombre);
 			}
 			
 		}

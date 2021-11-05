@@ -12,12 +12,7 @@
 		</template>
 		<a-table :columns="columns" :data-source="data" :pagination="true" :row-key="data => data.id_mensaje">
 			
-			<template slot="editBtn" slot-scope="data">
-				<a-button type="primary" :data-id="data.id_mensaje" @click="Editar(data.id_mensaje)">
-					Ver
-				</a-button>
-			</template>
-
+			
 		</a-table>
 	</a-card>
 	<!-- / Authors Table Card -->
