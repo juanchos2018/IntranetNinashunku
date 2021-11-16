@@ -68,8 +68,7 @@
         </a-col> 
   <a-col :span="24" :md="6">
           <a-form-item label="Usuario Responsable">
-            <a-select
-              
+            <a-select              
               style="width: 100%"
               @change="handleProvinceChange"
               v-model="modelEspacio.id_usuario"
@@ -79,12 +78,8 @@
               </a-select-option>
             </a-select>
           </a-form-item>
-        </a-col>
-    
-
-
+        </a-col> 
       </a-row>
-
       <a-row :gutter="24">
           
         <!-- <a-col :span="24" :md="6">

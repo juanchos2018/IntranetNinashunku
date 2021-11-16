@@ -1,16 +1,20 @@
 <template>
   <!-- Salary Card -->
-  <a-card :bordered="true"  class="widget-2 h-full cardstyle">" >
- <!-- <img
-      slot="cover"
-      alt="example"
-      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-    /> -->
-   
+  <a-card :bordered="true"  class="widget-2 h-full cardstyle"> 
     <div style="padding: 10px;">
-      		<strong><h5>{{nombre}}</h5> </strong>		
+  	<strong><h5>{{nombre}}</h5> </strong>		
       <p>{{ descripcion }}</p>
       <p>{{ fecha }}</p>
+    <a-badge>
+      <strong>
+       
+         <a  @click="Editar(id_eventoespacio)">Editar
+         </a>
+
+      </strong>
+     
+    </a-badge>
+     
     </div>
     <template slot="actions" class="ant-card-actions">
        <a-tooltip placement="top">
@@ -31,10 +35,7 @@
           <span>Noticias</span>
         </template> 
       <a-icon type="area-chart" @click="noticasespaciovento(id_espacio,id_eventoespacio)" />    
-  </a-tooltip>
-  
-
-    
+  </a-tooltip>   
 
       <!-- <a-icon key="pircture" type="setting" /> 
        <a-icon key="edit" type="edit" /> 
@@ -81,8 +82,7 @@ export default {
      EventosEspacio(id_eventoespacio,id_espacio){
        //   var datos=id_eventoespacio+"-"+id_espacio
           var datos=id_espacio+"-"+id_eventoespacio
-       //    console.log("idepscio ="+id_espacio+"-"+ "id_eventoespacio : "+ id_eventoespacio);
-        
+       //    console.log("idepscio ="+id_espacio+"-"+ "id_eventoespacio : "+ id_eventoespacio);        
             this.$router.push({
               name: "EspacioEventosFotos",
               params: { datos: datos},
@@ -95,6 +95,10 @@ export default {
     noticasespaciovento(id_espacio,id_eventoespacio){
            var datos=id_espacio+"-"+id_eventoespacio
           this.$router.push({ name: "EspacioNoticiasList" ,  params: { datos: datos},});
+    },
+    Editar(id){   
+      this.$emit("EditarEvento",id);
+      //	this.$emit('Eliminar',id,nombre);
     }
  }
 };

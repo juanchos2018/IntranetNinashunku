@@ -14,6 +14,9 @@ import './scss/app.scss';
 import axios from 'axios';
 import store from './store';
 import Vuex from 'vuex'
+
+import { BFormFile  } from 'bootstrap-vue'
+import { BBadge } from 'bootstrap-vue'
 //import { store } from "./store/state";
 Vue.use(Vuex)
 Vue.prototype.$eventHub = new Vue()
@@ -28,12 +31,13 @@ Vue.config.productionTip = false
 Vue.component("layout-default", DefaultLayout);
 Vue.component("layout-dashboard", DashboardLayout);
 Vue.component("layout-dashboard-rtl", DashboardRTLLayout);
-import { BFormFile } from 'bootstrap-vue'
-
 
 
 Vue.use(InputColorPicker)
+Vue.component('b-badge', BBadge)
 Vue.component('b-form-file', BFormFile)
+
+
 new Vue({
     router,
     store,

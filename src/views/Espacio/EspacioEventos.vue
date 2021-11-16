@@ -19,9 +19,13 @@
           :descripcion="item.descripcion"
           :id_espacio="item.id_espacio"
           :fecha="item.fecha_evento"
+          v-on:EditarEvento="EditarEvento"
+
         ></card-eventos-espacio>
       </a-col>
     </a-row>
+
+
     <a-modal :visible="dialogevento" :footer="null" @cancel="handleCancelModal">
       <a-form @submit.prevent="Validate">
         <a-form-item label="Nombre Evento">
@@ -52,6 +56,41 @@
         </a-form-item>
       </a-form>      
     </a-modal>
+
+
+
+   <a-modal :visible="dialogeventoEditar" :footer="null" @cancel="handleCancelModal"  title="Editar Evento">
+      <a-form @submit.prevent="ValidateEditar">
+        <a-form-item label="Nombre Evento">
+          <a-input
+            placeholder="Nombres"
+            v-model="modelEspacioEventoEditar.nombre_evento"
+          >
+          </a-input>
+        </a-form-item>
+        <a-form-item label="Descripcion">
+          <a-input
+            placeholder="descripcion foto"
+            v-model="modelEspacioEventoEditar.descripcion"
+          >
+          </a-input>
+        </a-form-item>
+        <a-form-item label="Fecha">
+          <a-date-picker
+            style="width: 100%"
+            v-model="modelEspacioEventoEditar.fecha_evento"
+          />
+        </a-form-item>
+
+        <a-form-item>
+          <a-button type="primary" html-type="submit">
+            GUARDAR
+          </a-button>
+        </a-form-item>
+      </a-form>      
+    </a-modal>
+
+
     <Loanding :isVisible="isLoading"/>
   </div>
 
@@ -90,6 +129,14 @@ export default {
         fecha_evento: "",
         id_espacio: 0,
       },
+
+       modelEspacioEventoEditar: {
+        nombre_evento: "",
+        descripcion: "",
+        fecha_evento: "",
+        id_espacio: 0,
+        id_eventoespacio:0,
+      },
       errors: {
         nombre_evento: false,
         descripcion: false,
@@ -97,7 +144,9 @@ export default {
         id_espacio: false,
       },
       dialogevento: false,
+      dialogeventoEditar:false,
       validate: false,
+      validateeditar: false,
     };
   },
   created() {
@@ -126,12 +175,32 @@ export default {
   },
   methods: {
     Validate,
+    ValidateEditar,
     AddEspacio() {
       //  this.$router.push({ name: "EspacioAdd" });
     },
     DialogoEVento() {
       this.dialogevento = true;
     },
+    EditarEvento(id) {
+      this.InfoEventoEspacio(id)
+      this.dialogeventoEditar = true;
+    },
+     InfoEventoEspacio(id_eventoespacio){
+       let me = this;    
+       let url = me.url_base+ "Control/eventoEspacio.php?idinfo=" + id_eventoespacio;
+      axios({
+        method: "GET",
+        url: url,
+      })
+        .then(function(response) {                  
+           me.modelEspacioEventoEditar=response.data.result
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     InfoEspacio(id_espacio){
       let me = this;      
       //let url = "espacioInfo/" + id_espacio;
@@ -149,7 +218,8 @@ export default {
         });
     },
     handleCancelModal() {
-      this.dialogevento = false;
+       this.dialogevento = false;
+       this.dialogeventoEditar = false;
     },
     ListEventoEspacios(id_espacio) {
       let me = this;
@@ -210,7 +280,35 @@ export default {
            me.isLoading=false;
         });
     },
-
+    UpdateVentoEspacio(){
+       let me = this;
+       me.isLoading=true;
+       const data = me.modelEspacioEventoEditar;     
+       let url = me.url_base+ "Control/eventoEspacio.php";
+      axios({
+        method: "PUT",
+        url: url,
+        data: data,
+      })
+        .then(function(response) {
+          if (response.data.status == "200") {
+             me.isLoading=false;
+             me.MensajeOk("Ediato con Exito !");
+             me.ListEventoEspacios(me.modelEspacioEvento.id_espacio);
+          } else if ((response.data.status = "404")) {
+             me.isLoading=false;
+            Swal.fire({
+              icon: "warning",
+              text: response.data.response,
+              timer: 3000,
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+           me.isLoading=false;
+        });
+    },
     MensajeOk(mensaje) {
       Swal.fire({
         title: "Exito!",
@@ -229,6 +327,41 @@ export default {
   },
 };
 
+function ValidateEditar(){
+   this.errors.nombre_evento =  this.modelEspacioEventoEditar.nombre_evento == "" ? true : false;
+
+      if (this.errors.nombre_evento) {
+      this.validateeditar = true;
+      Swal.fire({
+        icon: "warning",
+        text: "Verifique que campos necesarios esten llenados nom",
+        timer: 2000,
+        });
+        return false;
+      } else {
+        this.validateeditar = false;
+      }
+
+
+        if (!this.validate) {
+        Swal.fire({
+          title: "Desea Editar?",
+          text: "",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Si, Estoy de acuerdo!",
+        }).then((result) => {
+          if (result.value) {
+            this.dialogeventoEditar = false;
+            this.UpdateVentoEspacio();
+          }
+        });
+      }
+
+
+}
 function Validate() {
   this.errors.nombre_evento =
     this.modelEspacioEvento.nombre_evento == "" ? true : false;
@@ -289,7 +422,7 @@ function Validate() {
   ///let me = this;
   if (!this.validate) {
     Swal.fire({
-      title: "Desea Registrar Foto?",
+      title: "Desea Registrar?",
       text: "",
       icon: "warning",
       showCancelButton: true,
